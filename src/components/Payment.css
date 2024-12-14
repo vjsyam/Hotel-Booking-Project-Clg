@@ -1,0 +1,79 @@
+.payment-container {
+  width: 50%;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.payment-success {
+  width: 50%;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #af4c6f77;
+  border-radius: 10px;
+  background-color: #e0638f3d;
+  text-align: center;
+}
+
+.payment-container h2,
+.payment-success h2 {
+  color: #333;
+}
+
+.payment-container p,
+.payment-success p {
+  color: #555;
+}
+
+.payment-container .room-details {
+  margin-bottom: 20px;
+}
+
+.payment-container .room-image {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+.payment-container .booking-details {
+  margin-bottom: 20px;
+}
+
+.payment-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.payment-container input[type="datetime-local"],
+.payment-container input[type="number"] {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.payment-container button,
+.payment-success button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2016d3;
+  color: white;
+  cursor: pointer;
+}
+
+.payment-container button:hover,
+.payment-success button:hover {
+  background-color: #cecece;
+  color: #2016d3;
+}
+
+.payment-container button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}

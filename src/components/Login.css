@@ -1,0 +1,112 @@
+/* src/components/Login.css */
+
+.login-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.login-left, .login-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.login-left {
+  background: #f7f7f7;
+  text-align: left;
+}
+
+.login-right {
+  background: linear-gradient(to bottom right, #2016d3, #21abc7);
+  color: white;
+  text-align: center;
+}
+
+.login-left h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  padding:10px;
+}
+
+.login-options label, .login-options a {
+  color: #777;
+}
+
+.login-options a {
+  text-decoration: none;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background: #f8f6f6;
+  color: #2016d3;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-button:hover {
+  background: #2199c4;
+}
+
+.login-right h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.login-right p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.signup-button {
+  padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #2016d3;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.signup-button:hover {
+  background: #eeebeb;
+  color: #eee9e9;
+}

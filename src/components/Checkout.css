@@ -1,0 +1,104 @@
+.checkout-container {
+    width: 40%;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.checkout-container h2 {
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 20px;
+}
+
+.payment-method {
+    margin-bottom: 30px;
+}
+
+.payment-method label {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.payment-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.card-details,
+.net-banking-details,
+.gpay-details,
+.others-details,
+.upi-details {
+    margin-bottom: 30px;
+}
+
+.card-details label,
+.net-banking-details label,
+.gpay-details label,
+.others-details label,
+.upi-details label {
+    display: block;
+    margin: 15px 0;
+}
+
+.card-details input,
+.net-banking-details input,
+.gpay-details input,
+.others-details input,
+.upi-details input {
+    padding: 12px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.card-details input:focus,
+.net-banking-details input:focus,
+.gpay-details input:focus,
+.others-details input:focus,
+.upi-details input:focus {
+    border-color: #2016d3;
+    outline: none;
+}
+
+.qr-code {
+    margin-top: 10px;
+}
+
+.total-cost {
+    margin: 30px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2016d3;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #cecece;
+    color: #2016d3;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}

@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap'); /* Importing Lato font */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scrollHorizontally {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% + 100vw)); /* Scrolls the entire list */
+  }
+}
+
+.home-container {
+  font-family: 'Lato', sans-serif; /* Updated font */
+  margin: 0;
+  padding: 0;
+  color: #333;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.home-header {
+  background: url('../components/your-header-image.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 60px;
+  text-align: center;
+  color: #121212;
+  animation: slideIn 1s ease-in-out;
+}
+
+.home-header h1 {
+  font-size: 3em;
+  margin: 0;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.home-header p {
+  font-size: 1.2em;
+  margin: 10px 0;
+  animation: fadeIn 2s ease-in-out 0.5s;
+}
+
+.booking-options {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  animation: fadeIn 2s ease-in-out 1s;
+}
+
+.booking-options input, .search-button {
+  padding: 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.search-button {
+  background-color: #2988c8;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #2016d3;
+  color: #fff;
+}
+
+.room-options {
+  padding: 40px 20px;
+  animation: fadeIn 2s ease-in-out 1.5s;
+}
+
+.room-options h2 {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.room-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.room-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  padding: 15px;
+  text-align: center;
+  width: 300px;
+  transition: transform 0.3s ease;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.room-card:hover {
+  transform: translateY(-5px);
+}
+
+.room-image {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+.room-price {
+  font-size: 1.2em;
+  color: #2988c8;
+  margin: 10px 0;
+}
+
+.book-room-button {
+  background-color: #2988c8;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.book-room-button:hover {
+  background-color: #2016d3;
+  color: #fff;
+}
+
+/* Contact Us Section */
+.contact-us {
+  padding: 40px 20px;
+  background: #f8f8f8;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out 2s;
+}
+
+.contact-us h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.contact-us p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+/* Popular Destinations Section */
+.popular-destinations {
+  margin: 40px 0;
+  overflow: hidden; /* Hides the scrollbar */
+}
+
+.popular-destinations h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+.destination-list {
+  display: flex;
+  width: 200%; /* Ensures the list is wider than the viewport for scrolling */
+  animation: scrollHorizontally 20s linear infinite;
+}
+
+.destination-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 300px;
+  flex-shrink: 0; /* Prevents shrinking of the card */
+  margin-right: 20px; /* Spacing between cards */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.destination-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.destination-card h3 {
+  font-size: 1.5rem;
+  margin: 15px;
+  text-align: center;
+}
+
+/* Testimonials Section */
+.testimonials {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.testimonial-list {
+  display: flex;
+  flex-wrap: nowrap; /* Prevents wrapping */
+  overflow-x: hidden; /* Hide scrollbar */
+  width: 200%; /* Makes the list wider for scrolling */
+  animation: scrollHorizontally 20s linear infinite; /* Horizontal scroll animation */
+}
+
+.testimonial {
+  flex-shrink: 0; /* Prevents shrinking */
+  margin-right: 20px; /* Spacing between testimonials */
+  width: 300px; /* Fixed width for each testimonial */
+  background-color: #2988c8;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+  margin: 0;
+  color: #000;
+}
+
+/* Hide scrollbar */
+.testimonial-list::-webkit-scrollbar,
+.popular-destinations::-webkit-scrollbar {
+  display: none;
+}
+
+/* Footer */
+.site-footer {
+  background-color: #eef0f2;
+  color: rgb(9, 7, 7);
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 5px;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.social-media-icons {
+  margin-top: 10px;
+}
+
+.social-media-icons a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.social-media-icons a:hover {
+  text-decoration: underline;
+}
+
+.popular-destinations .destination-list {
+  animation: scrollHorizontally 20s linear infinite;
+}
+
+/* Stop scrolling when not active */
+.popular-destinations:not(.scrolling) .destination-list {
+  animation: none;
+}
