@@ -1,46 +1,24 @@
 {
   "users": [
     {
-      "id": 1776942748304,
-      "username": "testuser",
-      "email": "test@test.com",
-      "password": "password"
+      "id": 1776950891107,
+      "username": "vjs",
+      "email": "vjsyam17@gmail.com",
+      "password": "$2b$10$gqIgPquyZjAUtul/WKGChe/H5spuPFqzyVo89VUMx/iWUkv5bci/O",
+      "phone": ""
     },
     {
-      "id": 1776947122322,
-      "username": "vj",
-      "email": "vjsyam17@gmail.com",
-      "password": "12345678"
+      "id": 1776951075998,
+      "username": "testuser123",
+      "email": "test1234@test.com",
+      "password": "$2b$10$e20/OBxAsC1zKU4TZZtHjOYtGZSxmcW6uRufV5Ax.6gPYC2iGHMhK",
+      "phone": ""
     }
   ],
   "bookings": [
     {
-      "id": "1776942807325",
-      "userId": 1776942748304,
-      "roomName": "The Grand Sapphire Resort",
-      "hotelId": 1,
-      "checkIn": "61010-02-20",
-      "nights": 1,
-      "totalCost": 36000,
-      "paymentMethod": "card",
-      "bookingDate": "2026-04-23T11:13:27.325Z",
-      "status": "Confirmed"
-    },
-    {
-      "id": "1776947138959",
-      "userId": 1776947122322,
-      "roomName": "Alpine Eco-Lodge",
-      "hotelId": 3,
-      "checkIn": "2026-04-24",
-      "nights": 1,
-      "totalCost": 25000,
-      "paymentMethod": "upi",
-      "bookingDate": "2026-04-23T12:25:38.959Z",
-      "status": "Confirmed"
-    },
-    {
-      "id": "1776949458633",
-      "userId": 1776947122322,
+      "id": "1776951234648",
+      "userId": 1776950891107,
       "roomName": "Taj Lake Palace",
       "hotelId": 17,
       "checkIn": "2026-04-24",
@@ -51,11 +29,11 @@
       "serviceFee": 500,
       "totalCost": 198740,
       "paymentMethod": "card",
-      "guestName": "vj",
-      "guestPhone": "1234567890",
+      "guestName": "vjs",
+      "guestPhone": "1234566897",
       "guestEmail": "vjsyam17@gmail.com",
       "specialRequests": "",
-      "bookingDate": "2026-04-23T13:04:18.633Z",
+      "bookingDate": "2026-04-23T13:33:54.648Z",
       "status": "Confirmed"
     }
   ]
