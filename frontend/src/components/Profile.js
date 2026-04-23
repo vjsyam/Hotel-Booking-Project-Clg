@@ -37,7 +37,7 @@ const Profile = () => {
       })
       .then(data => { setBookings(data.bookings || []); setLoading(false); })
       .catch(() => setLoading(false));
-  }, [user, navigate]);
+  }, [user, navigate, logout, token]);
 
   const generateItinerary = (hotelName) => {
      setAiGenerating(true); setAiResult('');

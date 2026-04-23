@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { MeshDistortMaterial, Sphere } from '@react-three/drei';
+
 
 /* ─── Each shape tracks the mouse ─── */
 const FloatingShape = ({ position, geometry, color, speed, scale = 1, distort = 0.3 }) => {
