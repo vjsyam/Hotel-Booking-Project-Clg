@@ -1,285 +1,263 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap'); /* Importing Lato font */
+/* ═══════════════════════════════════════════════════════
+   HOME EXPLORE & VIBE MATCHER (FUTURISTIC AESTHETIC)
+   ═══════════════════════════════════════════════════════ */
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.home-main {
+  padding-top: 40px;
+  padding-bottom: 80px;
+  position: relative;
+  z-index: 2;
 }
 
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scrollHorizontally {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-100% + 100vw)); /* Scrolls the entire list */
-  }
-}
-
-.home-container {
-  font-family: 'Lato', sans-serif; /* Updated font */
-  margin: 0;
-  padding: 0;
-  color: #333;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.home-header {
-  background: url('../components/your-header-image.jpg') no-repeat center center;
-  background-size: cover;
-  padding: 60px;
-  text-align: center;
-  color: #121212;
-  animation: slideIn 1s ease-in-out;
-}
-
-.home-header h1 {
-  font-size: 3em;
-  margin: 0;
-  animation: fadeIn 2s ease-in-out;
-}
-
-.home-header p {
-  font-size: 1.2em;
-  margin: 10px 0;
-  animation: fadeIn 2s ease-in-out 0.5s;
-}
-
-.booking-options {
+/* FILTER HEADER ZONE */
+.filter-header {
   display: flex;
-  justify-content: center;
-  margin: 20px 0;
-  animation: fadeIn 2s ease-in-out 1s;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
 }
 
-.booking-options input, .search-button {
-  padding: 10px;
-  margin: 0 5px;
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  padding: 16px 24px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.search-bar:focus-within {
+  border-color: rgba(0, 242, 254, 0.4);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(0, 242, 254, 0.15);
+}
+
+.search-bar input {
+  flex: 1;
+  background: transparent;
   border: none;
-  border-radius: 5px;
-  font-size: 1em;
-}
-
-.search-button {
-  background-color: #2988c8;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.search-button:hover {
-  background-color: #2016d3;
+  font-size: 1.05rem;
   color: #fff;
 }
 
-.room-options {
-  padding: 40px 20px;
-  animation: fadeIn 2s ease-in-out 1.5s;
+.search-bar input::placeholder {
+  color: var(--color-text-secondary);
 }
 
-.room-options h2 {
-  text-align: center;
-  font-size: 2.5em;
-  margin-bottom: 20px;
-}
-
-.room-list {
+/* CYBER VIBE MATCHER */
+.vibe-matcher {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vibe-title {
+  font-weight: 700;
+  color: var(--color-purple);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+}
+
+.vibe-tags {
+  display: flex;
   flex-wrap: wrap;
+  gap: 12px;
 }
 
-.room-card {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin: 15px;
-  padding: 15px;
-  text-align: center;
-  width: 300px;
-  transition: transform 0.3s ease;
-  animation: fadeIn 2s ease-in-out;
+.vibe-tag {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
 }
 
-.room-card:hover {
-  transform: translateY(-5px);
-}
-
-.room-image {
-  width: 100%;
-  border-radius: 10px 10px 0 0;
-}
-
-.room-price {
-  font-size: 1.2em;
-  color: #2988c8;
-  margin: 10px 0;
-}
-
-.book-room-button {
-  background-color: #2988c8;
+.vibe-tag:hover {
+  border-color: var(--color-cyan);
   color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
 }
 
-.book-room-button:hover {
-  background-color: #2016d3;
+.vibe-tag.active {
+  background: var(--gradient-main);
+  border-color: transparent;
   color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+  font-weight: 600;
 }
 
-/* Contact Us Section */
-.contact-us {
-  padding: 40px 20px;
-  background: #f8f8f8;
-  text-align: center;
-  animation: fadeIn 2s ease-in-out 2s;
+.results-meta {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 16px;
 }
 
-.contact-us h2 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
+/* HYPER-MODERN GRID */
+.huge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 32px;
+  position: relative;
+  z-index: 2;
 }
 
-.contact-us p {
-  font-size: 1.2em;
-  color: #666;
-}
-
-/* Popular Destinations Section */
-.popular-destinations {
-  margin: 40px 0;
-  overflow: hidden; /* Hides the scrollbar */
-}
-
-.popular-destinations h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-
-.destination-list {
-  display: flex;
-  width: 200%; /* Ensures the list is wider than the viewport for scrolling */
-  animation: scrollHorizontally 20s linear infinite;
-}
-
-.destination-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.platform-card {
+  background: var(--color-surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
   overflow: hidden;
-  width: 300px;
-  flex-shrink: 0; /* Prevents shrinking of the card */
-  margin-right: 20px; /* Spacing between cards */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.destination-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.destination-card h3 {
-  font-size: 1.5rem;
-  margin: 15px;
-  text-align: center;
-}
-
-/* Testimonials Section */
-.testimonials {
-  margin: 40px 0;
-  text-align: center;
-}
-
-.testimonials h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.testimonial-list {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: flex;
-  flex-wrap: nowrap; /* Prevents wrapping */
-  overflow-x: hidden; /* Hide scrollbar */
-  width: 200%; /* Makes the list wider for scrolling */
-  animation: scrollHorizontally 20s linear infinite; /* Horizontal scroll animation */
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
 }
 
-.testimonial {
-  flex-shrink: 0; /* Prevents shrinking */
-  margin-right: 20px; /* Spacing between testimonials */
-  width: 300px; /* Fixed width for each testimonial */
-  background-color: #2988c8;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Glowing trace border effect via pseudo-element */
+.platform-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: var(--gradient-main);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 10;
+  pointer-events: none;
 }
 
-.testimonial p {
-  margin: 0;
-  color: #000;
+.platform-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(139, 92, 246, 0.15);
 }
 
-/* Hide scrollbar */
-.testimonial-list::-webkit-scrollbar,
-.popular-destinations::-webkit-scrollbar {
-  display: none;
+.platform-card:hover::before {
+  opacity: 1;
 }
 
-/* Footer */
-.site-footer {
-  background-color: #eef0f2;
-  color: rgb(9, 7, 7);
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-  border-radius: 5px;
+.card-img-wrapper {
+  position: relative;
+  height: 220px;
+  width: 100%;
+  overflow: hidden;
 }
 
-.site-footer p {
-  margin: 0;
-  font-size: 1rem;
+.card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
-.social-media-icons {
-  margin-top: 10px;
+.platform-card:hover .card-img-wrapper img {
+  transform: scale(1.1);
 }
 
-.social-media-icons a {
-  color: #007bff;
-  text-decoration: none;
-  margin: 0 5px;
+.rating-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(3, 3, 5, 0.7);
+  backdrop-filter: blur(8px);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-cyan);
+  border: 1px solid rgba(0, 242, 254, 0.2);
 }
 
-.social-media-icons a:hover {
-  text-decoration: underline;
+.card-details {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  z-index: 2;
 }
 
-.popular-destinations .destination-list {
-  animation: scrollHorizontally 20s linear infinite;
+.card-top-row h3 {
+  font-size: 1.35rem;
+  line-height: 1.3;
+  margin-bottom: 4px;
+  transition: color 0.3s ease;
 }
 
-/* Stop scrolling when not active */
-.popular-destinations:not(.scrolling) .destination-list {
-  animation: none;
+.platform-card:hover .card-top-row h3 {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-location {
+  color: var(--color-purple);
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.card-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.card-amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.am-tag {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 100px;
+  color: var(--color-text-secondary);
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 20px;
+}
+
+.price-tag {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+.price-tag b {
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.small-btn {
+  padding: 8px 24px;
+  font-size: 0.95rem;
 }

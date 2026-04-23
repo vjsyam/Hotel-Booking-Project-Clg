@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-// import { BrowserRouter } from 'react-router-dom';
-// import HotelLogin from './components/HotelLogin';
+import './index.css'; // CRITICAL FIX: The global CSS was not imported
 
 ReactDOM.render(
   <React.StrictMode>

@@ -6,19 +6,18 @@ import Signup from './components/Signup';
 import Payment from './components/Payment';
 import Checkout from './components/Checkout';
 import Dashboard from './components/Dashboard'; 
+import Offers from './components/Offers';
+import Experiences from './components/Experiences';
+import AnimatedRoutes from './components/AnimatedRoutes';
+import { AuthProvider } from './context/AuthContext';
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/payment/:roomId" element={<Payment />} />
-        <Route path="/checkout" element={<Checkout />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AnimatedRoutes />
+      </Router>
+    </AuthProvider>
   );
 };
 

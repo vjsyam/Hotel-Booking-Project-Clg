@@ -1,79 +1,151 @@
-.payment-container {
-  width: 50%;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-  text-align: center;
-}
+/* ═══════════════════════════════════════════════════════
+   PAYMENT AESTHETIC REPLICA
+   ═══════════════════════════════════════════════════════ */
 
-.payment-success {
-  width: 50%;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #af4c6f77;
-  border-radius: 10px;
-  background-color: #e0638f3d;
-  text-align: center;
-}
-
-.payment-container h2,
-.payment-success h2 {
-  color: #333;
-}
-
-.payment-container p,
-.payment-success p {
-  color: #555;
-}
-
-.payment-container .room-details {
-  margin-bottom: 20px;
-}
-
-.payment-container .room-image {
+.payment-box {
   width: 100%;
-  height: auto;
-  border-bottom: 1px solid #ddd;
+  max-width: 500px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(20, 20, 30, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  margin-top: 80px;
+  position: relative;
+  z-index: 2;
 }
 
-.payment-container .booking-details {
-  margin-bottom: 20px;
+.payment-heading {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 32px;
+  text-align: center;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.payment-container label {
-  display: block;
-  margin-bottom: 10px;
+.payment-room-preview {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(10, 10, 16, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 32px;
 }
 
-.payment-container input[type="datetime-local"],
-.payment-container input[type="number"] {
-  padding: 10px;
+.pr-left {
+  width: 100px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pr-left img {
   width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
+  height: 100%;
+  object-fit: cover;
 }
 
-.payment-container button,
-.payment-success button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #2016d3;
-  color: white;
-  cursor: pointer;
+.pr-right {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.payment-container button:hover,
-.payment-success button:hover {
-  background-color: #cecece;
-  color: #2016d3;
+.pr-right h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
 }
 
-.payment-container button:disabled {
-  background-color: #999;
-  cursor: not-allowed;
+.pr-price {
+  color: var(--color-cyan);
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.payment-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment-input-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-purple);
+}
+
+.payment-input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(10, 10, 16, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  color-scheme: dark; 
+}
+
+.payment-input:focus {
+  border-color: rgba(0, 242, 254, 0.5);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+}
+
+.payment-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.payment-submit-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.input-error {
+  border-color: rgba(248, 113, 113, 0.6) !important;
+  box-shadow: 0 0 10px rgba(248, 113, 113, 0.15) !important;
+}
+
+.field-error {
+  color: #f87171;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.bill-line {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  padding: 6px 0;
+}
+
+.payment-form textarea.payment-input {
+  min-height: 70px;
+  line-height: 1.5;
 }

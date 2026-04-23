@@ -1,309 +1,123 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Home.css';
-import standard from '../components/standard.jpeg';
-import deluxe from '../components/delexue.jpeg';
-import suite from '../components/suite.jpeg';
-import accessible from '../components/Acc.jpeg';
-import family from '../components/family.jpeg';
-import oceanview from '../components/oceanview.jpg';
-import connecting from '../components/connecting.jpg';
-import villa from '../components/villa.jpg';
-import spain from '../components/spain.jpg'; 
-import london from '../components/london.jpg';
-import croatia from '../components/croatia.jpg'; 
-import germany from '../components/germany.jpeg';
-import france from '../components/france.jpeg'; 
-import italy from '../components/italy.jpeg';
-import swiss from '../components/swiss.jpeg';
-import india from '../components/india.jpeg';
-import japan from '../components/japan.jpeg'; 
-import china from '../components/china.jpeg';
-import singapore from '../components/singapore.jpeg';
-import southafr from '../components/southafr.jpeg';
+import { hotelData } from '../data/hotels';
+import FloatingShapes from './scenes/FloatingShapes';
+import { motion } from 'framer-motion';
 
-// Sample data for rooms
-const rooms = [
-  {
-    id: 1,
-    name: 'Standard Room',
-    description: 'A cozy room with essential amenities.',
-    price: '$100/night',
-    image: standard
-  },
-  {
-    id: 2,
-    name: 'Deluxe Room',
-    description: 'A spacious room with premium amenities.',
-    price: '$150/night',
-    image: deluxe
-  },
-  {
-    id: 3,
-    name: 'Suite',
-    description: 'Luxurious suite with extra space and high-end amenities.',
-    price: '$250/night',
-    image: suite
-  },
-  {
-    id: 4,
-    name: 'Accessible Room',
-    description: 'Designed for disabled guests with larger bathrooms, lower beds, and handrails.',
-    price: '$69/night',
-    image: accessible
-  },
-  {
-    id: 5,
-    name: 'Family Suite',
-    description: 'Perfect choice for a family with up to 3 children.',
-    price: '$100/night',
-    image: family
-  },
-  {
-    id: 6,
-    name: 'Ocean View Room',
-    description: 'Enjoy a full view of the ocean from our Ocean View Suite.',
-    price: '$169/night',
-    image: oceanview
-  },
-  {
-    id: 7,
-    name: 'Connecting Family Room',
-    description: 'Families, friends, and other travelling parties may request connecting rooms – separate rooms that are joined by a door.',
-    price: '$100/night',
-    image: connecting
-  },
-  {
-    id: 8,
-    name: 'Villas',
-    description: 'A villa is a type of house that was originally an ancient Roman upper class country house',
-    price: '$200/night',
-    image: villa
-  },
-];
-
-// Sample data for popular destinations
-const destinations = [
-  {
-    id: 1,
-    name: 'Spain',
-    image: spain,
-  },
-  {
-    id: 2,
-    name: 'London',
-    image: london,
-  },
-  {
-    id: 3,
-    name: 'Croatia',
-    image: croatia,
-  },
-  {
-    id: 4,
-    name: 'Germany',
-    image: germany,
-  },
-  {
-    id: 5,
-    name: 'France',
-    image: france,
-  },
-  {
-    id: 6,
-    name: 'Italy',
-    image: italy,
-  },
-  {
-    id: 7,
-    name: 'Switzerland',
-    image: swiss,
-  },
-  {
-    id: 8,
-    name: 'India',
-    image: india,
-  },
-  {
-    id: 9,
-    name: 'Japan',
-    image: japan,
-  },
-  {
-    id: 10,
-    name: 'China',
-    image: china,
-  },
-  {
-    id: 11,
-    name: 'Singapore',
-    image: singapore,
-  },
-  {
-    id: 12,
-    name: 'South Africa',
-    image: southafr,
-  },
-];
+const VIBES = ['All', 'Relaxation', 'City Center', 'Adventure', 'Family', 'Luxury', 'Nightlife'];
 
 const Home = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredDestinations, setFilteredDestinations] = useState(destinations);
-  const [filteredRooms, setFilteredRooms] = useState(rooms);
-  const [isScrolling, setIsScrolling] = useState(true); // New state for controlling scrolling
+  const [selectedVibe, setSelectedVibe] = useState('All');
 
-  const handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
-    setSearchQuery(query);
-    
-    const filteredDestinations = destinations.filter((destination) =>
-      destination.name.toLowerCase().includes(query)
-    );
-    
-    const filteredRooms = rooms.filter((room) =>
-      room.name.toLowerCase().includes(query)
-    );
-    
-    setFilteredDestinations(filteredDestinations);
-    setFilteredRooms(filteredRooms);
-
-    // Stop scrolling when there is input in the search box
-    setIsScrolling(query === '');
-  };
+  const filteredRooms = hotelData.filter(hotel => {
+    const matchesSearch = hotel.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          hotel.location.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesVibe = selectedVibe === 'All' || hotel.tags.includes(selectedVibe);
+    return matchesSearch && matchesVibe;
+  });
 
   const handleBookRoom = (roomId) => {
     navigate(`/payment/${roomId}`);
   };
 
   return (
-    <div className="home-container">
-      <header className="home-header">
-        <h1>Book your stay with Us</h1>
-        <p>1,480,086 rooms around the world are waiting for you!</p>
-        <div className="booking-options">
-          <input type="text" value={searchQuery} onChange={handleSearch} placeholder="Location" />
-          <input type="date" placeholder="Check-in" />
-          <input type="date" placeholder="Check-out" />
-          <input type="number" placeholder="Guests" min="1" />
-          <button className="search-button">Search</button>
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      exit={{ opacity: 0 }} 
+      transition={{ duration: 0.5 }}
+      className="platform-layout"
+    >
+      <FloatingShapes />
+      <nav className="platform-nav">
+        <div className="nav-left">
+          <Link to="/" className="nav-brand">
+            <span className="nav-brand-text">HomeySolution.</span>
+          </Link>
+          <div className="nav-links">
+            <Link to="/home" className="nav-link">Stays</Link>
+            <Link to="/experiences">Experiences</Link>
+            <Link to="/offers">Offers</Link>
+          </div>
         </div>
-      </header>
+        <div className="nav-right">
+          <Link to="/profile" className="btn-outline" style={{padding: '8px 16px', fontSize: '0.9rem'}}>My Account</Link>
+        </div>
+      </nav>
 
-      <section className={`popular-destinations ${isScrolling ? 'scrolling' : ''}`}>
-        <h2>Popular Destinations</h2>
-        <div className="destination-list">
-          {filteredDestinations.map((destination) => (
-            <div key={destination.id} className="destination-card">
-              <img src={destination.image} alt={destination.name} className="destination-image" />
-              <h3>{destination.name}</h3>
+      <main className="home-main content-wrapper">
+        <div className="filter-header">
+           <div className="search-bar">
+             <span style={{fontSize: '1.2rem'}}>🔍</span>
+             <input 
+               type="text" 
+               placeholder="Search by hotel name or location..." 
+               value={searchQuery}
+               onChange={(e) => setSearchQuery(e.target.value)}
+             />
+           </div>
+
+           <div className="vibe-matcher">
+             <span className="vibe-title">Find Your Vibe:</span>
+             <div className="vibe-tags">
+               {VIBES.map(vibe => (
+                 <button 
+                   key={vibe} 
+                   className={`vibe-tag ${selectedVibe === vibe ? 'active' : ''}`}
+                   onClick={() => setSelectedVibe(vibe)}
+                 >
+                   {vibe}
+                 </button>
+               ))}
+             </div>
+           </div>
+        </div>
+
+        <div className="results-meta">
+           <p>{filteredRooms.length} properties matched your search</p>
+        </div>
+
+        <div className="huge-grid">
+          {filteredRooms.map(hotel => (
+            <div key={hotel.id} className="platform-card" onClick={() => handleBookRoom(hotel.id)}>
+              <div className="card-img-wrapper">
+                <img src={hotel.image} alt={hotel.name} />
+                <div className="rating-badge">⭐ {hotel.rating}</div>
+              </div>
+              <div className="card-details">
+                <div className="card-top-row">
+                  <h3>{hotel.name}</h3>
+                </div>
+                <p className="card-location">{hotel.location}</p>
+                <p className="card-desc">{hotel.description.substring(0, 80)}...</p>
+                
+                <div className="card-amenities">
+                  {hotel.amenities.slice(0,2).map((am, i) => (
+                    <span key={i} className="am-tag">{am}</span>
+                  ))}
+                  {hotel.amenities.length > 2 && <span className="am-tag">+{hotel.amenities.length - 2}</span>}
+                </div>
+
+                <div className="card-bottom">
+                  <span className="price-tag"><b>₹{hotel.price.toLocaleString('en-IN')}</b> / night</span>
+                  <button className="btn-primary small-btn" onClick={(e) => { e.stopPropagation(); handleBookRoom(hotel.id); }}>Book</button>
+                </div>
+              </div>
             </div>
           ))}
+
+          {filteredRooms.length === 0 && (
+             <div style={{gridColumn: '1 / -1', textAlign: 'center', padding: '60px 0'}}>
+                <h2>No matches found for that vibe.</h2>
+                <button onClick={() => {setSearchQuery(''); setSelectedVibe('All');}} className="btn-outline" style={{marginTop: '20px'}}>Clear Filters</button>
+             </div>
+          )}
         </div>
-      </section>
-
-      <section className="room-options">
-        <h2>Our Room Options</h2>
-        <div className="room-list">
-          {filteredRooms.map((room) => (
-            <div key={room.id} className="room-card">
-              <img src={room.image} alt={room.name} className="room-image" />
-              <h3>{room.name}</h3>
-              <p>{room.description}</p>
-              <p className="room-price">{room.price}</p>
-              <button className="book-room-button" onClick={() => handleBookRoom(room.id)}>Book Room</button>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="testimonials">
-        <h2>What Our Guests Say</h2>
-        <div className="testimonial-list scrolling">
-          <div className="testimonial">
-            <p>"Amazing experience! The room was clean and comfortable, and the service was top-notch."</p>
-            <p>- John Doe</p>
-          </div>
-          <div className="testimonial">
-            <p>"The view from the Ocean View Room was breathtaking. Highly recommend!"</p>
-            <p>- Jane Smith</p>
-          </div>
-          <div className="testimonial">
-            <p>"A perfect getaway for our family. The kids loved the Family Suite!"</p>
-            <p>- Emily Johnson</p>
-          </div>
-          <div className="testimonial">
-            <p>"The view from the Ocean View Room was spectacular. It made our vacation unforgettable!"</p>
-            <p>- Olivia Brown</p>
-          </div>
-
-          <div className="testimonial">
-            <p>"Exceptional service and a very comfortable stay. The staff went above and beyond!"</p>
-            <p>- Michael Smith</p>
-          </div>
-
-          <div className="testimonial">
-            <p>"Highly recommend the Deluxe Room! It was spacious, modern, and exceeded our expectations."</p>
-            <p>- Sarah Davis</p>
-          </div>
-
-          <div className="testimonial">
-            <p>"Our family enjoyed every moment. The Family Suite was perfect for our kids!"</p>
-            <p>- Andrew Wilson</p>
-          </div>
-
-          <div className="testimonial">
-            <p>"Such a luxurious stay. The Suite had all the amenities we needed and more!"</p>
-            <p>- James Thompson</p>
-          </div>
-
-          <div className="testimonial">
-            <p>"The staff was so friendly and helpful. We will definitely come back for another stay."</p>
-            <p>- Jessica Williams</p>
-          </div>
-
-          <div className="testimonial">
-            <p>"The breakfast buffet was amazing, and the room service was prompt and delicious."</p>
-            <p>- David Martinez</p>
-          </div>
-
-          <div className="testimonial">
-            <p>"We stayed in the Ocean View Room, and it was magical. Worth every penny!"</p>
-            <p>- Laura White</p>
-          </div>
-
-          <div className="testimonial">
-            <p>"Best vacation ever! The Family Suite was comfortable, and the kids had a blast."</p>
-            <p>- Thomas Taylor</p>
-          </div>
-
-          <div className="testimonial">
-            <p>"Absolutely loved the peaceful ambiance. The perfect getaway for some relaxation!"</p>
-            <p>- Sophia Anderson</p>
-          </div>
-
-          <div className="testimonial">
-            <p>"The accessible room was well-designed, and the staff was incredibly accommodating."</p>
-            <p>- Lisa Garcia</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="contact-us">
-        <h2>Contact Us</h2>
-        <p>Have questions? Reach out to our customer support team 24/7 via phone or email.</p>
-      </section>
-
-      <footer className="site-footer">
-        <p>&copy; 2024 Vj LTD. All Rights Reserved.</p>
-        <p>Follow us on:</p>
-        <div className="social-media-icons">
-          <a href="https://facebook.com">Facebook</a> | 
-          <a href="https://twitter.com">Twitter</a> | 
-          <a href="https://instagram.com">Instagram</a>
-        </div>
-      </footer>
-    </div>
+      </main>
+    </motion.div>
   );
 };
 
