@@ -28,7 +28,7 @@ const Profile = () => {
     if (!user) { navigate('/login'); return; }
     setSettingsForm({ username: user.username, email: user.email, phone: user.phone || '', currentPassword: '', newPassword: '' });
     
-    fetch(`http://localhost:5000/api/bookings/${user.id}`)
+    fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/bookings/${user.id}`)
       .then(res => res.json())
       .then(data => { setBookings(data.bookings || []); setLoading(false); })
       .catch(() => setLoading(false));
@@ -45,7 +45,7 @@ const Profile = () => {
   const handleSaveSettings = async () => {
     setSettingsMsg({ text: '', type: '' });
     try {
-      const response = await fetch(`http://localhost:5000/api/users/${user.id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/users/${user.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(settingsForm)
@@ -64,7 +64,7 @@ const Profile = () => {
   const handleCancelBooking = async (bookingId) => {
     if (!window.confirm('Are you sure you want to cancel this booking? This action cannot be undone.')) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/bookings/${bookingId}/cancel`, { method: 'PUT' });
+      const res = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/bookings/${bookingId}/cancel`, { method: 'PUT' });
       if (res.ok) {
         setBookings(prev => prev.map(b => b.id === bookingId ? { ...b, status: 'Cancelled' } : b));
       }
