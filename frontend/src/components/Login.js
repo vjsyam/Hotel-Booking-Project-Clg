@@ -8,6 +8,7 @@ import FloatingShapes from './scenes/FloatingShapes';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
@@ -67,12 +68,25 @@ const Login = () => {
 
           <div className="auth-input-group">
             <input 
-               type="password" 
+               type={showPassword ? "text" : "password"} 
                placeholder="Password" 
                value={password}
                onChange={(e)=>setPassword(e.target.value)}
                required className="auth-input" 
+               style={{paddingRight: '40px'}}
             />
+            <button 
+              type="button" 
+              className="toggle-password-btn" 
+              onClick={() => setShowPassword(!showPassword)}
+              tabIndex="-1"
+            >
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
+          </div>
+
+          <div style={{textAlign: 'right', marginTop: '-12px'}}>
+             <Link to="/forgot-password" style={{color: 'var(--color-cyan)', fontSize: '0.85rem', fontWeight: '500'}}>Forgot Password?</Link>
           </div>
 
           <button type="submit" className="btn-primary auth-submit-btn">Sign In</button>

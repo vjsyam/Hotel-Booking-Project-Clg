@@ -10,6 +10,8 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState(null);
   
   const navigate = useNavigate();
@@ -71,11 +73,43 @@ const Signup = () => {
           </div>
 
           <div className="auth-input-group">
-            <input type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} required className="auth-input" />
+            <input 
+              type={showPassword ? "text" : "password"} 
+              placeholder="Password" 
+              value={password} 
+              onChange={e=>setPassword(e.target.value)} 
+              required 
+              className="auth-input" 
+              style={{paddingRight: '40px'}}
+            />
+            <button 
+              type="button" 
+              className="toggle-password-btn" 
+              onClick={() => setShowPassword(!showPassword)}
+              tabIndex="-1"
+            >
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
           </div>
           
           <div className="auth-input-group">
-            <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={e=>setConfirmPassword(e.target.value)} required className="auth-input" />
+            <input 
+              type={showConfirmPassword ? "text" : "password"} 
+              placeholder="Confirm Password" 
+              value={confirmPassword} 
+              onChange={e=>setConfirmPassword(e.target.value)} 
+              required 
+              className="auth-input" 
+              style={{paddingRight: '40px'}}
+            />
+            <button 
+              type="button" 
+              className="toggle-password-btn" 
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              tabIndex="-1"
+            >
+              {showConfirmPassword ? 'Hide' : 'Show'}
+            </button>
           </div>
 
           <button type="submit" className="btn-primary auth-submit-btn">Sign Up</button>

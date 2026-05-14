@@ -104,7 +104,7 @@ const Payment = () => {
              <img src={room.image} alt={room.name} />
            </div>
            <div className="pr-right">
-             <h4>{room.name} ({room.rating} ⭐)</h4>
+             <h4>{room.name} ({room.rating} / 5)</h4>
              <span style={{color: 'var(--color-text-secondary)', fontSize: '0.9rem'}}>{room.location}</span>
              <span className="pr-price" style={{marginTop: '4px'}}>₹{room.price.toLocaleString('en-IN')} / night</span>
            </div>

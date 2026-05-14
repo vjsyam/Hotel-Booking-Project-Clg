@@ -11,6 +11,7 @@ import Dashboard from './Dashboard';
 import Offers from './Offers';
 import Experiences from './Experiences';
 import Profile from './Profile';
+import ForgotPassword from './ForgotPassword';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -20,6 +21,7 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/home" element={<Home />} />
         <Route path="/payment/:roomId" element={<Payment />} />
         <Route path="/checkout" element={<Checkout />} />

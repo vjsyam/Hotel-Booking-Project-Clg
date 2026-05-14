@@ -170,3 +170,30 @@
   margin-top: 4px;
   display: block;
 }
+
+/* ────── RESPONSIVE ────── */
+@media (max-width: 600px) {
+  .checkout-box {
+    padding: 24px 16px;
+    margin-top: 40px;
+    border-radius: 16px;
+  }
+  .checkout-heading {
+    font-size: 1.6rem;
+    margin-bottom: 24px;
+  }
+  .checkout-summary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 1.1rem;
+    padding: 16px;
+  }
+  .pm-label {
+    padding: 16px;
+  }
+  .pm-row {
+    flex-direction: column;
+  }
+}
+

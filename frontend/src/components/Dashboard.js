@@ -29,7 +29,7 @@ const Dashboard = () => {
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="platform-layout"
     >
-      {/* Premium Navbar */}
+      {/* Navbar */}
       <nav className="platform-nav">
         <div className="nav-left">
           <Link to="/" className="nav-brand">
@@ -53,7 +53,7 @@ const Dashboard = () => {
         </div>
       </nav>
 
-      {/* Massive 3D Hero Section */}
+      {/* Hero Section */}
       <div className="hero-section" style={{ background: 'none' }}>
         <HeroScene />
         <div className="hero-overlay" style={{ background: 'linear-gradient(180deg, rgba(3, 3, 5, 0) 0%, var(--color-bg) 100%)' }}></div>
@@ -131,22 +131,19 @@ const Dashboard = () => {
           <p className="section-subtitle">Book your dream stay in just 3 simple steps</p>
           <div className="steps-grid">
             <div className="step-card">
-              <div className="step-icon">🔍</div>
               <div className="step-number">01</div>
               <h3>Search & Discover</h3>
               <p>Browse 24+ curated properties across India and the world. Filter by vibe, budget, or location.</p>
             </div>
             <div className="step-card">
-              <div className="step-icon">📅</div>
               <div className="step-number">02</div>
               <h3>Book & Pay Securely</h3>
               <p>Choose your dates, fill in guest details, and pay securely via Card or UPI. Get instant confirmation.</p>
             </div>
             <div className="step-card">
-              <div className="step-icon">🏨</div>
               <div className="step-number">03</div>
               <h3>Check-in & Enjoy</h3>
-              <p>Show up, check in with your booking ID, and enjoy a world-class stay. Let our AI Concierge plan your day.</p>
+              <p>Show up, check in with your booking ID, and enjoy a world-class stay. Let our AI Concierge Assistant plan your day.</p>
             </div>
           </div>
         </section>
@@ -157,27 +154,27 @@ const Dashboard = () => {
           <p className="section-subtitle">Everything you need to know for a smooth stay</p>
           <div className="info-grid">
             <div className="info-card">
-              <h4>🕐 Check-in & Check-out</h4>
+              <h4>Check-in & Check-out</h4>
               <p>Standard check-in is <strong>2:00 PM</strong> and check-out is <strong>11:00 AM</strong>. Early check-in and late check-out are subject to availability — add a note in Special Requests.</p>
             </div>
             <div className="info-card">
-              <h4>❌ Cancellation Policy</h4>
+              <h4>Cancellation Policy</h4>
               <p><strong>Free cancellation</strong> up to 48 hours before check-in. Cancellations within 48 hours will be charged 50% of the first night. No-shows are charged the full amount.</p>
             </div>
             <div className="info-card">
-              <h4>🧳 What to Bring</h4>
+              <h4>What to Bring</h4>
               <p>A valid government-issued ID (Aadhaar, Passport, or Driver's License) is required at check-in. Towels, toiletries, and Wi-Fi are complimentary at all properties.</p>
             </div>
             <div className="info-card">
-              <h4>🔒 Safety & Security</h4>
+              <h4>Safety & Security</h4>
               <p>All properties are verified and audited. Your payments are protected with 256-bit SSL encryption. In-room safes are available at most locations.</p>
             </div>
             <div className="info-card">
-              <h4>📞 24/7 Support</h4>
+              <h4>24/7 Support</h4>
               <p>Need help? Our support team is available round the clock. Call <strong>+91 1800-123-4567</strong> (toll-free) or email <strong>support@homeysolution.com</strong>.</p>
             </div>
             <div className="info-card">
-              <h4>💳 Payment Options</h4>
+              <h4>Payment Options</h4>
               <p>We accept all major Credit/Debit cards (Visa, Mastercard, Rupay), UPI (GPay, PhonePe, Paytm), and Net Banking. All prices include GST.</p>
             </div>
           </div>
@@ -190,7 +187,7 @@ const Dashboard = () => {
           <div className="testimonials-grid">
             <div className="testimonial-card">
               <div className="testimonial-stars">★★★★★</div>
-              <p className="testimonial-text">"Absolutely stunning experience at the Taj Lake Palace. The booking process was seamless and the AI Concierge actually planned a better itinerary than I could have!"</p>
+              <p className="testimonial-text">"Absolutely stunning experience at the Taj Lake Palace. The booking process was straightforward and the AI Concierge Assistant actually planned a better itinerary than I could have!"</p>
               <div className="testimonial-author">
                 <div className="testimonial-avatar">PA</div>
                 <div>
@@ -229,7 +226,7 @@ const Dashboard = () => {
           <div className="newsletter-card">
             <h3>Get Exclusive Deals Delivered</h3>
             <p>Subscribe to our newsletter and be the first to know about flash sales, new destinations, and members-only pricing.</p>
-            <form className="newsletter-form" onSubmit={(e) => { e.preventDefault(); alert('✅ Subscribed successfully!'); }}>
+            <form className="newsletter-form" onSubmit={(e) => { e.preventDefault(); alert('Subscribed successfully!'); }}>
               <input type="email" placeholder="Enter your email address" required />
               <button type="submit" className="btn-primary">Subscribe</button>
             </form>

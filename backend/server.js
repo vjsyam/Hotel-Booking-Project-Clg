@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { body, validationResult } = require('express-validator');
+const nodemailer = require('nodemailer');
 
 const app = express();
 
@@ -22,6 +23,15 @@ app.use(express.json({ limit: '1mb' })); // Limit body size
 
 const DB_FILE = path.join(__dirname, 'db.json');
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
+
+// Nodemailer Transporter Configuration
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.SMTP_EMAIL,
+        pass: process.env.SMTP_PASS
+    }
+});
 
 // Rate limiters for auth routes
 const authLimiter = rateLimit({
@@ -116,6 +126,95 @@ app.post('/api/login', authLimiter, [
     const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '24h' });
 
     res.json({ message: 'Login successful', user: { id: user.id, username: user.username, email: user.email, phone: user.phone || '' }, token });
+});
+
+// ─── Auth: Forgot Password Request OTP ───────────────────
+app.post('/api/forgot-password/request', authLimiter, [
+    body('email').trim().isEmail().withMessage('Valid email is required').normalizeEmail()
+], validateRequest, async (req, res) => {
+    const { email } = req.body;
+    const db = readDB();
+
+    const userIdx = db.users.findIndex(u => u.email === email);
+    if (userIdx === -1) {
+        return res.status(404).json({ error: 'User with this email not found' });
+    }
+
+    // Generate a 6-digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiry = Date.now() + 10 * 60 * 1000; // 10 minutes
+
+    db.users[userIdx].resetOtp = otp;
+    db.users[userIdx].resetOtpExpiry = expiry;
+    writeDB(db);
+
+    // Send email using Nodemailer if configured
+    if (process.env.SMTP_EMAIL && process.env.SMTP_PASS) {
+        try {
+            await transporter.sendMail({
+                from: `"HomeySolution Support" <${process.env.SMTP_EMAIL}>`,
+                to: email,
+                subject: 'Your Password Reset OTP',
+                html: `<div style="font-family: sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #eaeaea; border-radius: 10px;">
+                         <h2 style="color: #0ea5e9;">Password Reset Request</h2>
+                         <p>We received a request to reset the password for your HomeySolution account.</p>
+                         <p>Your One-Time Password (OTP) is:</p>
+                         <div style="font-size: 24px; font-weight: bold; letter-spacing: 4px; padding: 16px; background: #f8fafc; text-align: center; border-radius: 8px; margin: 20px 0;">
+                            ${otp}
+                         </div>
+                         <p style="color: #64748b; font-size: 14px;">This code is valid for 10 minutes. If you did not request a password reset, please ignore this email.</p>
+                       </div>`
+            });
+            console.log(`[EMAIL SENT] OTP successfully sent to ${email}`);
+        } catch (mailErr) {
+            console.error('[EMAIL ERROR]', mailErr);
+            return res.status(500).json({ error: 'Failed to send email. Ensure backend/.env SMTP credentials are correct.' });
+        }
+    } else {
+        // Fallback for simulation if not configured
+        console.log(`[SIMULATION] SMTP not configured. OTP for ${email} is ${otp}`);
+    }
+
+    // DO NOT return the OTP to the client
+    res.json({ message: 'OTP sent successfully' });
+});
+
+// ─── Auth: Reset Password with OTP ───────────────────────
+app.post('/api/forgot-password/reset', authLimiter, [
+    body('email').trim().isEmail().normalizeEmail(),
+    body('otp').isString().isLength({ min: 6, max: 6 }),
+    body('newPassword').isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
+], validateRequest, async (req, res) => {
+    const { email, otp, newPassword } = req.body;
+    const db = readDB();
+
+    const userIdx = db.users.findIndex(u => u.email === email);
+    if (userIdx === -1) {
+        return res.status(404).json({ error: 'User not found' });
+    }
+
+    const user = db.users[userIdx];
+
+    if (!user.resetOtp || user.resetOtp !== otp) {
+        return res.status(400).json({ error: 'Invalid OTP' });
+    }
+
+    if (Date.now() > user.resetOtpExpiry) {
+        return res.status(400).json({ error: 'OTP has expired' });
+    }
+
+    // OTP is valid, update password
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+    
+    // Clear OTP fields
+    delete user.resetOtp;
+    delete user.resetOtpExpiry;
+
+    db.users[userIdx] = user;
+    writeDB(db);
+
+    res.json({ message: 'Password reset successfully' });
 });
 
 // ─── Profile: Update User ───────────────────────────────

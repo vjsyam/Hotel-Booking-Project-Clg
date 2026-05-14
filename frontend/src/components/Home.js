@@ -5,18 +5,18 @@ import { hotelData } from '../data/hotels';
 import FloatingShapes from './scenes/FloatingShapes';
 import { motion } from 'framer-motion';
 
-const VIBES = ['All', 'Relaxation', 'City Center', 'Adventure', 'Family', 'Luxury', 'Nightlife'];
+const TRAVEL_STYLES = ['All', 'Relaxation', 'City Center', 'Adventure', 'Family', 'Luxury', 'Nightlife'];
 
 const Home = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedVibe, setSelectedVibe] = useState('All');
+  const [selectedStyle, setSelectedStyle] = useState('All');
 
   const filteredRooms = hotelData.filter(hotel => {
     const matchesSearch = hotel.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           hotel.location.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesVibe = selectedVibe === 'All' || hotel.tags.includes(selectedVibe);
-    return matchesSearch && matchesVibe;
+    const matchesStyle = selectedStyle === 'All' || hotel.tags.includes(selectedStyle);
+    return matchesSearch && matchesStyle;
   });
 
   const handleBookRoom = (roomId) => {
@@ -51,7 +51,6 @@ const Home = () => {
       <main className="home-main content-wrapper">
         <div className="filter-header">
            <div className="search-bar">
-             <span style={{fontSize: '1.2rem'}}>🔍</span>
              <input 
                type="text" 
                placeholder="Search by hotel name or location..." 
@@ -61,15 +60,15 @@ const Home = () => {
            </div>
 
            <div className="vibe-matcher">
-             <span className="vibe-title">Find Your Vibe:</span>
+             <span className="vibe-title">Filter by Style:</span>
              <div className="vibe-tags">
-               {VIBES.map(vibe => (
+               {TRAVEL_STYLES.map(style => (
                  <button 
-                   key={vibe} 
-                   className={`vibe-tag ${selectedVibe === vibe ? 'active' : ''}`}
-                   onClick={() => setSelectedVibe(vibe)}
+                   key={style} 
+                   className={`vibe-tag ${selectedStyle === style ? 'active' : ''}`}
+                   onClick={() => setSelectedStyle(style)}
                  >
-                   {vibe}
+                   {style}
                  </button>
                ))}
              </div>
@@ -85,7 +84,7 @@ const Home = () => {
             <div key={hotel.id} className="platform-card" onClick={() => handleBookRoom(hotel.id)}>
               <div className="card-img-wrapper">
                 <img src={hotel.image} alt={hotel.name} />
-                <div className="rating-badge">⭐ {hotel.rating}</div>
+                <div className="rating-badge">{hotel.rating}/5</div>
               </div>
               <div className="card-details">
                 <div className="card-top-row">
@@ -111,8 +110,8 @@ const Home = () => {
 
           {filteredRooms.length === 0 && (
              <div style={{gridColumn: '1 / -1', textAlign: 'center', padding: '60px 0'}}>
-                <h2>No matches found for that vibe.</h2>
-                <button onClick={() => {setSearchQuery(''); setSelectedVibe('All');}} className="btn-outline" style={{marginTop: '20px'}}>Clear Filters</button>
+                <h2>No matches found for that style.</h2>
+                <button onClick={() => {setSearchQuery(''); setSelectedStyle('All');}} className="btn-outline" style={{marginTop: '20px'}}>Clear Filters</button>
              </div>
           )}
         </div>

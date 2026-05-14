@@ -61,7 +61,7 @@ const Profile = () => {
       const data = await response.json();
       if (response.ok) {
         login(data.user); // Update context + localStorage
-        setSettingsMsg({ text: '✅ Profile updated successfully!', type: 'success' });
+        setSettingsMsg({ text: 'Profile updated successfully!', type: 'success' });
         setSettingsForm(prev => ({ ...prev, currentPassword: '', newPassword: '' }));
       } else {
         setSettingsMsg({ text: data.error, type: 'error' });
@@ -123,9 +123,9 @@ const Profile = () => {
              <p style={{textAlign: 'center', color: 'var(--color-text-secondary)'}}>{user.email}</p>
              
              <div className="profile-menu">
-               <div className={`profile-menu-item ${activeTab === 'trips' ? 'active' : ''}`} onClick={() => setActiveTab('trips')}>🏨 My Trips</div>
-               <div className={`profile-menu-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => setActiveTab('settings')}>⚙️ Account Settings</div>
-               <div className="profile-menu-item">🎁 Rewards ({points.toLocaleString('en-IN')} pts)</div>
+               <div className={`profile-menu-item ${activeTab === 'trips' ? 'active' : ''}`} onClick={() => setActiveTab('trips')}>My Trips</div>
+               <div className={`profile-menu-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => setActiveTab('settings')}>Account Settings</div>
+               <div className="profile-menu-item">Rewards ({points.toLocaleString('en-IN')} pts)</div>
              </div>
            </aside>
 
@@ -136,7 +136,7 @@ const Profile = () => {
                <>
                  {/* AI Concierge */}
                  <div className="promo-card" style={{padding: '32px', marginBottom: '32px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
-                    <h2 style={{marginBottom: '16px', color: 'var(--color-cyan)'}}>✨ AI Concierge Assistant</h2>
+                    <h2 style={{marginBottom: '16px', color: 'var(--color-cyan)'}}>AI Concierge Assistant</h2>
                     <p style={{color: 'var(--color-text-secondary)', marginBottom: '16px'}}>Generate an intelligent day-by-day itinerary for any of your upcoming stays.</p>
                     {aiGenerating ? (
                        <div style={{color: 'var(--color-cyan)', fontStyle: 'italic'}}>Analyzing location data... Synthesizing itinerary...</div>
@@ -176,11 +176,10 @@ const Profile = () => {
                                style={{display: 'flex', alignItems: 'center', gap: '16px', padding: '16px 20px', cursor: 'pointer'}}
                                onClick={() => setExpandedBooking(expandedBooking === booking.id ? null : booking.id)}
                              >
-                               <div style={{background: 'rgba(255,255,255,0.05)', padding: '12px', borderRadius: '8px', fontSize: '1.5rem'}}>🏨</div>
                                <div style={{flex: 1}}>
                                  <h4 style={{marginBottom: '4px'}}>{booking.roomName}</h4>
                                  <p style={{color: 'var(--color-text-secondary)', fontSize: '0.85rem'}}>
-                                   📅 {booking.checkIn}{booking.checkOut ? ` → ${booking.checkOut}` : ''} • 🌙 {booking.nights} Night{booking.nights > 1 ? 's' : ''}
+                                   {booking.checkIn}{booking.checkOut ? ` to ${booking.checkOut}` : ''} • {booking.nights} Night{booking.nights > 1 ? 's' : ''}
                                  </p>
                                </div>
                                <div style={{textAlign: 'right'}}>
